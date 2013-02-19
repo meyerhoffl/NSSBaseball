@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NSSstandings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--Stylesheet-->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+	<!--Javascript Files-->
+<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+<script src="js/jquery.js"></script>
+<!-- <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script> -->
+<script src="js/validate.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+<script src="js/jquery.colorbox-min.js"></script>
+<!--Colorbox Script-->
+<script>
+			$(document).ready(function(){
+				//Examples of how to assign the ColorBox event to elements
+				$(".inline").colorbox({inline:true, width:"50%", position:fixed=true, top:"50px"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+</script><!--end colorbox script-->
+<!--validate script-->
+<script type="text/javascript">
+jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+});;
+</script><!--end validate script-->
+<!--validate specifications-->
+	  <script>
+	  $(document).ready(function(){
+	    $("#addteamform").validate({
+  rules: {
+
+	phone: {
+      required: true,
+      digits: true,
+      maxlength: 10,
+      minlength: 10
+    },
+
+    zipcode:{
+    	required: true,
+    	digits: true,
+    	maxlength: 5,
+    	minlength: 5
+    }
+  }
+});
+  });
+</script><!--end validation specifications-->
+
+</head>
+<body>
+    <h1>Beer and Veggie Dogs? League</h1>
+    		<h3>Standings</h3>
+    		
+<!-- 	INSERT TABLE -->
+
+
+<!-- 	Button (popup form) -->
+
+
+
+<p><a href="#addteamform" class="inline"><button class="btn btn-large" type="button" id="addteambutton">Add a Team</button></a>
+
+<button class="btn btn-large" type="button" id="updateresults">Update Results</button></p>
+
+<div id="teams"></div>
+
+	<div style="display:none">
+	
+	 <form class="cmxform" name="addteamform" id="addteamform" method="submit" action="">
+	 <fieldset>
+	   <legend><strong>Add A Team</strong></legend>
+	   <p>
+	     <label for="teamname">Team Name</label>
+	     <em>*</em><input id="teamname" name="teamname" size="25" class="required" minlength="3" />
+	   </p>
+	   <p>
+	     <label for="firstname">First Name</label>
+	     <em>*</em><input id="firstname" name="firstname" size="25" class="required" minlength="3" />
+	   </p>
+	   <p>
+	     <label for="lastname">Last Name</label>
+	     <em>*</em><input id="lastname" name="lastname" size="25" class="required" minlength="3" />
+	   </p>
+	   <p>
+	     <label for="phone">Phone Number</label>
+	     <em>*</em><input id="phone" name="phone" size="25"  class="required phone"/>
+	   </p>
+	   <p>
+	     <label for="sponsor">Sponsor</label>
+	     <em>*</em><input id="sponsor" name="sponsor" cols="22"  class="required" />
+	   </p>
+	   <p>
+	     <label for="zipcode">5-digit Zip Code</label>
+	     <em>*</em><input id="zipcode" name="zipcode" cols="22"  class="required" />
+	   </p>
+	   <p>
+	     <input class="submit" name="submit" type="submit" value="Submit"/>
+	   </p>
+	 </fieldset>
+	 </form>
+
+</div><!--end hidden form div-->
+<div id="output"></div>
+
+<!--gather team info-->
+<script>
+$(document).ready(function(){
+	var teamInfo = [];
+  $(".submit").click(function(){
+    x=$("#addteamform").serializeArray("teamInfo");
+    $.each(x, function(i, field){
+      $("#output").append(field.name + ":" + field.value + " ");
+    });
+  });
+});
+</script><!--end gather team info-->
+
+
+
+</body>
+</html>
