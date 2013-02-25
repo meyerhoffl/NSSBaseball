@@ -40,30 +40,40 @@
 jQuery.validator.setDefaults({
 	debug: true,
 	success: "valid"
-});;
+});
+
+jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
+    phone_number = phone_number.replace(/\s+/g, ""); 
+	return this.optional(element) || phone_number.length > 9 &&
+		phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
+}, "Please specify a valid phone number");
+
+
 </script><!--end validate script-->
 <!--validate specifications-->
 	  <script>
 	  $(document).ready(function(){
 	    $("#addteamform").validate({
   rules: {
-
-	phone: {
-      required: true,
-      digits: true,
-      maxlength: 10,
-      minlength: 10
-    },
-
+  	
     zipcode:{
     	required: true,
     	digits: true,
     	maxlength: 5,
     	minlength: 5
+    },
+
+    phone: {
+      required: true,
+      phoneUS: true
     }
   }
 });
-  });
+
+
+  });//end ready
+
+
 </script><!--end validation specifications-->
 
 </head>
@@ -71,7 +81,7 @@ jQuery.validator.setDefaults({
 <div class="container-fluid">
 <div class="row-fluid">
 	<div class="span12 heading">
-    <h1>Beer and Veggie Dogs League ?!?!?</h1>
+    <h1>Beer and Veggie Dogs League</h1>
     <h3>Standings</h3>
 	</div>
 </div>    		
