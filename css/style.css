@@ -2,6 +2,14 @@ body {
 	text-align:center;
 }
 
+#team-head {
+    background: #BDB5B5;
+}
+
+tr th {
+    padding-top:15px;
+    padding-bottom:15px;
+}
 
 /*
     ColorBox Core Style:
