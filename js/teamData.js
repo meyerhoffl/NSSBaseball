@@ -1,6 +1,26 @@
 
 $(document).ready(function(){
+	var schedule=function(data){
+		var teamSchedule=[ 
+			[ [1, 6], [2, 5], [3, 4] ],
+			[ [1, 5], [4, 6], [2, 3] ],
+			[ [1, 4], [3, 5], [2, 6] ],
+			[ [1, 3], [2, 4], [5, 6] ],
+			[ [1, 2], [3, 6], [4, 5] ],
+		];
 
+		$(".schedule").each(function(i, elem){
+			$(elem).find(".week").text(i + 1);
+			$(elem).next().find(".span4").each(function(j, elem2){
+				var game = teamSchedule[i][j];
+				var team1 = game[0] - 1;
+				var team2 = game[1] - 1;
+	
+				$(elem2).append(data[team1].team_name + " vs ");
+				$(elem2).append(data[team2].team_name);
+			});
+		});
+	};
 
 		loadTeams();
 		function loadTeams(){
@@ -10,6 +30,8 @@ $(document).ready(function(){
 		// dataType: 'text',
 		success: function(data) {
 			league=data;
+			// schedule(data);
+			
 			$('tbody').html(" ");
 			// alert("clearing");
 			
@@ -22,7 +44,7 @@ $(document).ready(function(){
 			$('.infopopover').popover({ html : true, trigger: 'hover', content: popovercontent})//end popover
 			
 			var key = data[i].team_name;
-			console.log("<p id="+ data[i].id + ">" + key + "</p>");
+			// console.log("<p id="+ data[i].id + ">" + key + "</p>");
 
 
 			}// end for statement
@@ -31,7 +53,7 @@ $(document).ready(function(){
 
 		},//end success
 		error: function(data) {
-			alert("fail get");
+			alert("fail get")
 		}//end fail
 	});//end get
 
@@ -150,6 +172,7 @@ $.ajax({
 		$(this).closest('tr').remove();
 		console.log("deleted");
 		loadTeams();
+		
 		},//end success
 	error: function(data){
 		alert("fail delete");
@@ -160,6 +183,48 @@ $.ajax({
 
 
 })//end delete click
+
+$("#updateSchedule").click(function(){
+
+$.ajax({
+		url: 'backliftapp/nssbaseballtesting',
+		type: 'get',
+		// dataType: 'text',
+		success: function(data) {
+			// league=data;
+			schedule(data);
+			
+
+
+
+			// $('tbody').html(" ");
+			// // alert("clearing");
+			
+			
+			// for (i=0; i < data.length; i++){
+		 //    $("#standings").append('<tr><td id='+ data[i].id +'><span class="infopopover" rel="popover" data-original-title="Team info:"> ' + data[i].team_name + '</span></td><td>' + data[i].wins + '</td><td>' + data[i].losses + '</td><td>' + data[i].percentage + '</td><td><button name="delete" class="btn-small delete" id="'+ data[i].id +'">Delete</button></td></tr>')
+		
+
+			// var popovercontent = '<div class="popover-content"><p><strong>Owner:</strong>' + ' ' + data[i].first_name + ' ' + data[i].last_name + '</p>' + '<p><strong>Phone:</strong>' + ' ' + data[i].phone + '</p>' + '<p><strong>Sponsor:</strong>' + ' ' + data[i].sponsor + '</p>' + '<p><strong>Zip Code:</strong>' + ' ' + data[i].zipcode + '</p></div>';
+			// $('.infopopover').popover({ html : true, trigger: 'hover', content: popovercontent})//end popover
+			
+			// var key = data[i].team_name;
+			// // console.log("<p id="+ data[i].id + ">" + key + "</p>");
+
+
+			// }// end for statement
+		
+
+
+		},//end success
+		error: function(data) {
+			alert("fail get")
+		}//end fail
+	});//end get
+});//end update schedule click
+
+
+
 
 
 
