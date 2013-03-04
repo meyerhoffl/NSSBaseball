@@ -17,15 +17,53 @@ $(document).ready(function(){
 				var team2 = game[1] - 1;
 	
 				$(elem2).append('<label>' + data[team1].team_name + '</label>' + '<input class="number" id=' + data[team1].id + ' />');
-				$(elem2).append('<label>' + data[team2].team_name + '</label>' + '<input class="number" id=' + data[team2].id + ' />');
+				$(elem2).append('<label>' + data[team2].team_name + '</label>' + '<input class="number" id=' + data[team2].id + ' /><br/>');
+				$(elem2).append('<br /><button class="score btn-small">Tally Score</button>');
 
 
 	
-			});
-		});
+			});//end elem next
+		});//end schedule.each
 
 		
-	};
+	};//end schedule
+
+	var tallyScores=function(data){
+		alert("tallying score");
+
+var teamSchedule=[ 
+			[ [1, 6], [2, 5], [3, 4] ],
+			[ [1, 5], [4, 6], [2, 3] ],
+			[ [1, 4], [3, 5], [2, 6] ],
+			[ [1, 3], [2, 4], [5, 6] ],
+			[ [1, 2], [3, 6], [4, 5] ],
+		];
+
+		$(".schedule").each(function(i, elem){
+			$(elem).find(".week").text(i + 1);
+			$(elem).next().find(".span4").each(function(j, elem2){
+				var game = teamSchedule[i][j];
+				var team1 = game[0] - 1;
+				var team2 = game[1] - 1;
+	
+
+	if ($(data[team1].id).val() > $(data[team2].id).val()){
+			alert(data[team1].team_name + "wins!");
+			}//end if
+	
+	else($(data[team1].id).val() < $(data[team2].id).val())
+		{
+				alert("second team wins");
+		}//end else
+
+	
+	});//end elem next
+});//end schedule each
+
+
+	};//end tallyScores
+
+
 
 		loadTeams();
 		function loadTeams(){
@@ -197,36 +235,29 @@ $.ajax({
 	});//end get
 });//end update schedule click
 
-// $("#updateresults").click(function(){
+$(".score").click(function(){
 
-// $.ajax({
-// 		url: '/backliftapp/nssbaseballtesting',
-// 		type: 'post',
-// 		dataType: 'json',
-// 		data: teamInfo,
-// 		success: function(data) {
-// 		if (data[team1].id.val() >  data[team2].id.val(){
-// 			console.log(data[team1].team_name) + "wins!");
-// 		}
+$.ajax({
+		url: '/backliftapp/nssbaseballtesting',
+		type: 'get',
+		// dataType: 'json',
+		// data: teamInfo,
+		success: function(data) {
+		tallyScores(data);
 
-// 		else if (data[team2].id.val() >  data[team1].id.val(){
-// 			console.log(data[team2].team_name) + "wins!");
-// 		}
-
-
-// 		},//end success
+		},//end success
 
 
 	
-// 		error: function(data) {
-// 			alert("fail post");
-// 		}//end error
-// 	})//end post
+		error: function(data) {
+			alert("fail post");
+		}//end error
+	})//end post
 
 
 
 
-// });//end update results click
+});//end score click
 
 
 
