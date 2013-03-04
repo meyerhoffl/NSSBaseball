@@ -197,7 +197,7 @@ $.ajax({
 	});//end get
 });//end update schedule click
 
-$("#updateresults").click(function(){
+// $("#updateresults").click(function(){
 
 // $.ajax({
 // 		url: '/backliftapp/nssbaseballtesting',
@@ -205,28 +205,28 @@ $("#updateresults").click(function(){
 // 		dataType: 'json',
 // 		data: teamInfo,
 // 		success: function(data) {
-		if (data[team1].id.val() >  data[team2].id.val(){
-			console.log(data[team1].team_name) + "wins!");
-		}
+// 		if (data[team1].id.val() >  data[team2].id.val(){
+// 			console.log(data[team1].team_name) + "wins!");
+// 		}
 
-		else if (data[team2].id.val() >  data[team1].id.val(){
-			console.log(data[team2].team_name) + "wins!");
-		}
+// 		else if (data[team2].id.val() >  data[team1].id.val(){
+// 			console.log(data[team2].team_name) + "wins!");
+// 		}
 
 
-	// 	},//end success
+// 		},//end success
 
 
 	
-	// 	error: function(data) {
-	// 		alert("fail post");
-	// 	}//end error
-	// })//end post
+// 		error: function(data) {
+// 			alert("fail post");
+// 		}//end error
+// 	})//end post
 
 
 
 
-});//end update results click
+// });//end update results click
 
 
 
