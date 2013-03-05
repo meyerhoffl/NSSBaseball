@@ -16,8 +16,8 @@ $(document).ready(function(){
 				var team1 = game[0] - 1;
 				var team2 = game[1] - 1;
 	
-				$(elem2).append('<label>' + data[team1].team_name + '</label>' + '<input class="number" id=' + data[team1].id + ' />');
-				$(elem2).append('<label>' + data[team2].team_name + '</label>' + '<input class="number" id=' + data[team2].id + ' /><br/>');
+				$(elem2).append('<label>' + data[team1].team_name + '</label>' + '<input class="number" id="input-' + data[team1].id + '"" />');
+				$(elem2).append('<label>' + data[team2].team_name + '</label>' + '<input class="number" id="input-' + data[team2].id + '"" /><br/>');
 				$(elem2).append('<br /><button class="score btn-small">Tally Score</button>');
 
 
@@ -45,20 +45,72 @@ var teamSchedule=[
 				var game = teamSchedule[i][j];
 				var team1 = game[0] - 1;
 				var team2 = game[1] - 1;
-	
+			
+		
+			if(parseInt($('#input-' + data[team1].id).val()) > parseInt($('#input-' + data[team2].id).val())){
+				console.log(data[team1].team_name + "wins!");
+				alert($('#input-' + data[team1].id).val());
 
-	if ($(data[team1].id).val() > $(data[team2].id).val()){
-			alert(data[team1].team_name + "wins!");
+					data[team1].wins += 1;
+					data[team2].losses += 1;
+					//(data[team2].id).losses).push(+1);
+
+					$.ajax({
+					url: '/backliftapp/nssbaseballtesting',
+					type: 'post',
+					// dataType: 'json',
+					// data: teamInfo,
+					success: function(data) {
+			
+			
+		},//end success
+	
+		error: function(data) {
+			alert("fail post");
+		}//end error
+	})//end post
+
+
 			}//end if
 	
-	else($(data[team1].id).val() < $(data[team2].id).val())
-		{
-				alert("second team wins");
-		}//end else
+			else {
+				console.log(data[team2].team_name + "wins!");
+				alert($('#input-' + data[team2].id).val());
 
+
+					data[team2].wins += 1;
+					data[team1].losses += 1;
+					//(data[team2].id).losses).push(+1);
+
+					$.ajax({
+					url: '/backliftapp/nssbaseballtesting',
+					type: 'post',
+					// dataType: 'json',
+					// data: teamInfo,
+					success: function(data) {
+			
+					
+				
+
+			
+		
+		},//end success
 	
-	});//end elem next
-});//end schedule each
+		error: function(data) {
+			alert("fail post");
+		}//end error
+	})//end post
+
+
+
+
+				
+			}//end else
+
+
+			});//end elem next
+		});//end schedule each
+
 
 
 	};//end tallyScores
@@ -80,7 +132,7 @@ var teamSchedule=[
 			
 			
 			for (i=0; i < data.length; i++){
-		    $("#standings").append('<tr><td id='+ data[i].id +'><span class="infopopover" rel="popover" data-original-title="Team info:"> ' + data[i].team_name + '</span></td><td>' + data[i].wins + '</td><td>' + data[i].losses + '</td><td>' + data[i].percentage + '</td><td><button name="delete" class="btn-small delete" id="'+ data[i].id +'">Delete</button></td></tr>')
+		    $("#standings").append('<tr><td id='+ data[i].id +'><span class="infopopover" rel="popover" data-original-title="Team info:"> ' + data[i].team_name + '</span></td><td>' + data[i].wins + '</td><td>' + data[i].losses + '</td><td>' + data[i].percentage + '</td><td><button name="delete" class="btn-small delete" id="delete-'+ data[i].id +'">Delete</button></td></tr>')
 		
 
 			var popovercontent = '<div class="popover-content"><p><strong>Owner:</strong>' + ' ' + data[i].first_name + ' ' + data[i].last_name + '</p>' + '<p><strong>Phone:</strong>' + ' ' + data[i].phone + '</p>' + '<p><strong>Sponsor:</strong>' + ' ' + data[i].sponsor + '</p>' + '<p><strong>Zip Code:</strong>' + ' ' + data[i].zipcode + '</p></div>';
@@ -123,8 +175,8 @@ $(".submit").one('click', function(){
 		phone: $("#phone").val(),
 		sponsor: $("#sponsor").val(),
 		zipcode: $("#zipcode").val(),
-		wins: 1,
-		losses: 5,
+		wins: 0,
+		losses: 0,
 		percentage: function() {
 			return teamInfo.wins / (teamInfo.wins + teamInfo.losses); 
 		}//end percentage
@@ -141,7 +193,7 @@ $(".submit").one('click', function(){
 		success: function(data) {
 			// console.log(teamInfo);
 			function writeTeam(teamInfo){
-		    $("#standings").append('<tr><td id=' + teamInfo.id +'><span class="infopopover" rel="popover" data-original-title="Team info:"> ' + teamInfo.team_name + '</span></td><td>' + teamInfo.wins + '</td><td>' + teamInfo.losses + '</td><td>' + teamInfo.percentage + '</td><td><button name="delete" class="btn-small delete" id=' + teamInfo.id +'>Delete</button></td></tr>');
+		    $("#standings").append('<tr><td id=' + teamInfo.id +'><span class="infopopover" rel="popover" data-original-title="Team info:"> ' + teamInfo.team_name + '</span></td><td>' + teamInfo.wins + '</td><td>' + teamInfo.losses + '</td><td>' + teamInfo.percentage + '</td><td><button name="delete" class="btn-small delete" id="delete-'+ teamInfo.id +'">Delete</button></td></tr>');
 		   		
 
 			var popovercontent = '<div class="popover-content"><p><strong>Owner:</strong>' + ' ' + teamInfo.first_name + ' ' + teamInfo.last_name + '</p>' + '<p><strong>Phone:</strong>' + ' ' + teamInfo.phone + '</p>' + '<p><strong>Sponsor:</strong>' + ' ' + teamInfo.sponsor + '</p>' + '<p><strong>Zip Code:</strong>' + ' ' + teamInfo.zipcode + '</p></div>';
@@ -235,7 +287,7 @@ $.ajax({
 	});//end get
 });//end update schedule click
 
-$(".score").click(function(){
+$("#updateresults").click(function(){
 
 $.ajax({
 		url: '/backliftapp/nssbaseballtesting',
@@ -243,6 +295,7 @@ $.ajax({
 		// dataType: 'json',
 		// data: teamInfo,
 		success: function(data) {
+
 		tallyScores(data);
 
 		},//end success

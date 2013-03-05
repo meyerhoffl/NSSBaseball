@@ -9,7 +9,6 @@
 
 	<!--Javascript Files-->
 <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
-<script src="js/backlift-reloader.js"></script>
 <script src="js/jquery.js"></script>
 <!-- <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script> -->
 <script src="js/validate.js"></script>
@@ -42,7 +41,7 @@
 jQuery.validator.setDefaults({
 	debug: true,
 	success: "valid"
-});
+});;
 </script>
 
 	  <script>
@@ -92,25 +91,6 @@ jQuery.validator.setDefaults({
 	<tbody class="standingsBody"></tbody>
 
 </table>
-<form class="scoring">
-<div class="row-fluid schedule">
-	<div class="span12" id="weekOne">
-		<h3>Week <span class="week"></span></h3>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="span4" id="Game">
-			<h4>Game One</h4>
-		</div>
-		<div class="span4" id="GameTwo">
-			<h4>Game Two</h4>
-		</div>
-		<div class="span4" id="GameThree">
-			<h4>Game Three</h4>
-		</div>
-	</div>
-</div>
 
 <div class="row-fluid schedule">
 	<div class="span12" id="weekOne">
@@ -188,8 +168,104 @@ jQuery.validator.setDefaults({
 	</div>
 </div>
 
+<div class="row-fluid schedule">
+	<div class="span12" id="weekOne">
+		<h3>Week <span class="week"></span></h3>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span4" id="Game">
+			<h4>Game One</h4>
+		</div>
+		<div class="span4" id="GameTwo">
+			<h4>Game Two</h4>
+		</div>
+		<div class="span4" id="GameThree">
+			<h4>Game Three</h4>
+		</div>
+	</div>
+</div>
 
 
+<!-- <div class="row-fluid">
+	<div class="span12" id="weekOne">
+		<h3>Week Two</h3>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span4" id="weekTwoGameOne">
+			<h4>Game One</h4>
+		</div>
+		<div class="span4" id="weekTwoGameTwo">
+			<h4>Game Two</h4>
+		</div>
+		<div class="span4" id="weekTwoGameThree">
+			<h4>Game Three</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row-fluid">
+	<div class="span12" id="weekOne">
+		<h3>Week Three</h3>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span4" id="weekThreeGameOne">
+			<h4>Game One</h4>
+		</div>
+		<div class="span4" id="weekThreeGameTwo">
+			<h4>Game Two</h4>
+		</div>
+		<div class="span4" id="weekThreeGameThree">
+			<h4>Game Three</h4>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12" id="weekOne">
+		<h3>Week Four</h3>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span4" id="weekFourGameOne">
+			<h4>Game One</h4>
+		</div>
+		<div class="span4" id="weekFourGameTwo">
+			<h4>Game Two</h4>
+		</div>
+		<div class="span4" id="weekFourGameThree">
+			<h4>Game Three</h4>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12" id="weekOne">
+		<h3>Week Five</h3>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span4" id="weekFiveGameOne">
+			<h4>Game One</h4>
+		</div>
+		<div class="span4" id="weekFiveGameTwo">
+			<h4>Game Two</h4>
+		</div>
+		<div class="span4" id="weekFiveGameThree">
+			<h4>Game Three</h4>
+		</div>
+	</div>
+</div>
+ -->
+
+
+<!-- 	Button (popup form) -->
 
 <p><a href="#addteamform" class="inline"><button class="btn btn-large" type="button" id="addteambutton">Add a Team</button></a>
 
@@ -236,6 +312,83 @@ jQuery.validator.setDefaults({
 </div><!--end hidden form div-->
 </div> <!-- end container fluid div -->
 <!--gather team info-->
+<script>
+$(document).ready(function(){
 
+
+// $("#updateSchedule").click(function(){
+// 		fillSchedule();
+// 		function fillSchedule(){
+
+// 	var teamSchedule=[1,2,3,4,5,6];
+
+// 	for (var a=0; a<7; a++)
+// 		console.log(a);
+// 	for (var i =0; i<league.length; i++)
+
+// 	teamSchedule.forEach(function(item, i) {if (item == a) teamSchedule[x] = league[i].team_name; });
+
+// 	$("#weekOneGameOne").append('<p id>'+ teamSchedule[0] + " vs " + teamSchedule[1] +'</p>');
+// 	$("#weekOneGameTwo").append('<p id>'+ teamSchedule[2] + " vs " + teamSchedule[3] +'</p>');
+// 	$("#weekOneGameThree").append('<p id>'+ teamSchedule[4]+ " vs " + teamSchedule[5] +'</p>');
+
+// };//close fillSchedule
+
+
+
+// });//close update schedule click
+
+
+
+
+// for(var i=0; i<league.length; i++){
+
+// var teamSchedule=[ 
+// [ [1, 6], [2, 5], [3, 4] ],
+// [ [1, 5], [4, 6], [2, 3] ],
+// [ [1, 4], [3, 5], [2, 6] ],
+// [ [1, 3], [2, 4], [5, 6] ],
+// [ [1, 2], [3, 6], [4, 5] ],
+// ];
+
+// var key = league[i].team_name;
+// alert(key);
+// var a;
+// var b;
+// var c;
+// var entry;
+// var entry1;
+
+// for(a=0; a<teamSchedule.length; a++){
+// 	entry = teamSchedule[a];
+// 	for (b=0; b<entry.length; b++);{
+// 		entry1=entry[b];
+// 		for (c=0; c<entry1.length; c++){
+
+
+
+
+// for (var x = 0; x<teamSchedule.length; x++){
+// 	if (teamSchedule[x] == 1)
+// 		teamSchedule[x] = key;
+// 		alert(teamSchedule);
+
+// }//end for x
+// }//end c
+// }//end b
+// }//end a
+
+// }//end for i
+
+
+});//end ready
+</script>
+
+<script>
+$(document).ready(function(){
+
+
+});//end ready
+</script>
 </body>
 </html>
