@@ -1,1 +1,11 @@
-Steve Branch readme
+This branch contains my personal index.html & beerleague.js files as of 3/6/13.  
+
+Code successfully adds & deletes teams from the Backlift server, with team info stored & displayed as a popover in the 
+Standings div. Games are automatically populated in the schedule tabs by week from the 6-team schedule array and 
+winner/loser of games is determined, however scores are not yet set up to be reported and stored on the server.
+
+To do:
+* Successfully get the app to bypass empty score fields
+* Send W/L game results to server 
+* add sorting function to standings
+* add variable for 4 & 8 team league schedules
