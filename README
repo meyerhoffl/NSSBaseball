@@ -1,0 +1,15 @@
+This code captures information for six teams, stores this information on the server, and writes the data to the page. 
+It includes delete buttons for each team, though the delete method is not currently working. Click the Update Schedule 
+button, and the games schedule appears with text boxes for entering scores. After entering the scores, click the update 
+results button, and a function evaluates which team has won and lost. We have attempted to write this information 
+back to the server to be added to the original team information, however, at present, it is writing a new, undefined 
+team instead! Future goals for this project include: getting the wins and losses to write back to the server properly, 
+updating the scores of individual games by clicking the score button, rather than updating them all at the same time, 
+and adding a sorting feature to the team stats.
+
+Steve and I worked in different files for this project, because we felt that writing our own code would better 
+faciliate the learning process for both of us. We constantly shared ideas and helped each other over each hurdle. 
+Ultimately we will merge the code, as Steve's code pays better attention to layout; my focus was to get each feature
+working. 
+
+This code may be viewed here: https://nssbaseballtesting-noo3q.backliftapp.com/
