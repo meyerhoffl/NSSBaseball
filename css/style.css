@@ -2,7 +2,22 @@ body {
 	text-align:center;
 }
 
+#team-head {
+    background: #BDB5B5;
+}
 
+tr th {
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.scorefield {
+    width: 50px;
+}
+
+#resultstab {
+    padding-top:25px;
+}
 /*
     ColorBox Core Style:
     The following CSS is consistent between example themes and should not be altered.
