@@ -46,45 +46,51 @@ $(document).ready(function(){
 					var team1 = game[0] - 1;
 					var team2 = game[1] - 1;
 					
+
 					if(parseInt($('#' + i + league[team1].id).val()) > parseInt($('#' + i + league[team2].id).val())){
 						
 						// alert($('#input-' + data[team1].id).val());
 	
-							// data[team2].wins += 1;
-							// data[team1].losses += 1;
+							
 							alert("team1 is higher");
 							console.log($('#' + i + league[team1].id).val() + " is greater than " + $('#' + i + league[team2].id).val())
-								// $.ajax({
-								// 	url: '/backliftapp/nssbaseballtesting/' + league[team1].id,
-								// 	type: 'PUT',
-								// 	dataType: 'JSON',
-								// 	data: {wins: +league[team1].wins + 1},
-								// 	success: function(league) {
-								// 	console.log(league[team1]);
+								$.ajax({
+									url: '/backliftapp/nssbaseballtesting/' + league[team1].id,
+									type: 'PUT',
+									dataType: 'JSON',
+									data: {wins: function()
+												{parseInt(league[team1].wins = parseInt(1) + parseInt(league[team1].wins));
+												return parseInt(league[team1].wins);}
+										  },
+									success: function(league) {
+									console.log(league[team1]);
 									
 
-								// 	},//end success
+									},//end success
 		
-								// 	error: function(data) {
-								// 		alert("fail post");
-								// 	}//end error
-								// })//end post
+									error: function(data) {
+										alert("fail post");
+									}//end error
+								})//end post
 
-								// $.ajax({
-								// 	url: '/backliftapp/nssbaseballtesting/' + league[team2].id,
-								// 	type: 'PUT',
-								// 	dataType: 'JSON',
-								// 	data: {losses: +league[team2].losses + 1},
-								// 	success: function(data) {
+								$.ajax({
+									url: '/backliftapp/nssbaseballtesting/' + league[team2].id,
+									type: 'PUT',
+									dataType: 'JSON',
+									data: {losses: function()
+												{parseInt(league[team2].losses = parseInt(1) + parseInt(league[team2].losses));
+												return parseInt(league[team2].losses);}
+										  },
+									success: function(data) {
 									
 
 					
-								// 	},//end success
+									},//end success
 		
-								// 	error: function(data) {
-								// 		alert("fail post");
-								// 	}//end error
-								// })//end post
+									error: function(data) {
+										alert("fail post");
+									}//end error
+								})//end post
 					}//end if
 
 	
@@ -96,34 +102,40 @@ $(document).ready(function(){
 							// data[team1].losses += 1;
 					
 	
-								// $.ajax({
-								// 	url: '/backliftapp/nssbaseballtesting/' + league[team2].id,
-								// 	type: 'PUT',
-								// 	dataType: 'JSON',
-								// 	data: {wins: +league[team2].wins + 1},
-								// 	success: function(data) {
+								$.ajax({
+									url: '/backliftapp/nssbaseballtesting/' + league[team2].id,
+									type: 'PUT',
+									dataType: 'JSON',
+									data: {wins: function()
+												{parseInt(league[team2].wins = parseInt(1) + parseInt(league[team2].wins));
+												return parseInt(league[team2].wins);}
+										  },
+									success: function(data) {
 									
-								// 	},//end success
+									},//end success
 		
-								// 	error: function(data) {
-								// 		alert("fail post");
-								// 	}//end error
-								// })//end post
+									error: function(data) {
+										alert("fail post");
+									}//end error
+								})//end post
 
-								// $.ajax({
-								// 	url: '/backliftapp/nssbaseballtesting/' + league[team1].id,
-								// 	type: 'PUT',
-								// 	dataType: 'JSON',
-								// 	data: {losses: +league[team1].losses + 1},
-								// 	success: function(data) {
+								$.ajax({
+									url: '/backliftapp/nssbaseballtesting/' + league[team1].id,
+									type: 'PUT',
+									dataType: 'JSON',
+									data: {losses: function()
+												{parseInt(league[team1].losses = parseInt(1) + parseInt(league[team1].losses));
+												return parseInt(league[team1].losses);}
+										  },
+									success: function(data) {
 					
 					
-								// 	},//end success
+									},//end success
 		
-								// 	error: function(data) {
-								// 		alert("fail post");
-								// 	}//end error
-								// })//end post
+									error: function(data) {
+										alert("fail post");
+									}//end error
+								})//end post
 					}//end else
 				});//end elem next
 			});//end schedule each
@@ -192,6 +204,7 @@ $(document).ready(function(){
 		
 // ********************************************* Adding Teams to Server ********************************************
 loadTeams();
+
 	$("#addteambutton").click(function(){
 		// if (league.length >= 6){
 
@@ -214,8 +227,8 @@ loadTeams();
 					phone: $("#phone").val(),
 					sponsor: $("#sponsor").val(),
 					zipcode: $("#zipcode").val(),
-					wins: 0,
-					losses: 0,
+					wins: parseInt(0),
+					losses: parseInt(0),
 					percentage: 0,
 					},	//end data
 				success: function(data) {
