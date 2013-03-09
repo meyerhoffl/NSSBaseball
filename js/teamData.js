@@ -18,8 +18,8 @@ $(document).ready(function(){
 					var team1 = game[0] - 1;
 					var team2 = game[1] - 1;
 		
-				$(elem2).append('<label>' + league[team1].team_name + '</label>' + '<input class="number" id=" '+ i + league[team1].id +'" />');
-				$(elem2).append('<label>' + league[team2].team_name + '</label>' + '<input class="number" id=" '+ i + league[team2].id +'" /><br/>');
+				$(elem2).append('<label>' + league[team1].team_name + '</label>' + '<input class="number" id="'+ i + league[team1].id +'" />');
+				$(elem2).append('<label>' + league[team2].team_name + '</label>' + '<input class="number" id="'+ i + league[team2].id +'" /><br/>');
 				$(elem2).append('<br /><button class="score btn-small">Tally Score</button>');
 			});//end elem next
 		});//end schedule.each
@@ -90,7 +90,7 @@ $(document).ready(function(){
 	
 					else {
 						alert("team2 is higher");
-						console.log($('#' + i +  league[team1].id).val() + " is less than " + $('#' + i + league[team2].id).val());
+						console.log($('#' + i +  league[team1].id).val() + " is less than " + $('#' + i +  league[team2].id).val());
 							
 							// data[team2].wins += 1;
 							// data[team1].losses += 1;
