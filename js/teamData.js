@@ -20,7 +20,7 @@ $(document).ready(function(){
 		
 				$(elem2).append('<label>' + league[team1].team_name + '</label>' + '<input class="number" id="'+ i + league[team1].id +'" />');
 				$(elem2).append('<label>' + league[team2].team_name + '</label>' + '<input class="number" id="'+ i + league[team2].id +'" /><br/>');
-				$(elem2).append('<br /><button class="score btn-small">Tally Score</button>');
+				
 			});//end elem next
 		});//end schedule.each
 	};//end schedule
@@ -60,8 +60,12 @@ $(document).ready(function(){
 									dataType: 'JSON',
 									data: {wins: function()
 												{parseInt(league[team1].wins = parseInt(1) + parseInt(league[team1].wins));
-												return parseInt(league[team1].wins);}
-										  },
+												return parseInt(league[team1].wins);},
+											percentage: function()
+													{
+													return parseInt(league[team1].wins)/parseInt(league[team1].wins) + parseInt(league[team1].losses);
+													}
+										  	},
 									success: function(league) {
 									console.log(league[team1]);
 									
@@ -79,7 +83,15 @@ $(document).ready(function(){
 									dataType: 'JSON',
 									data: {losses: function()
 												{parseInt(league[team2].losses = parseInt(1) + parseInt(league[team2].losses));
-												return parseInt(league[team2].losses);}
+												return parseInt(league[team2].losses);},
+											percentage: function(){
+												if (parseInt(league[team2].wins) === 0){
+													return 0;
+													}
+												else{
+													return parseInt(league[team2].wins)/parseInt(league[team2].wins) + parseInt(league[team2].losses);
+													}
+											}
 										  },
 									success: function(data) {
 									
@@ -108,7 +120,10 @@ $(document).ready(function(){
 									dataType: 'JSON',
 									data: {wins: function()
 												{parseInt(league[team2].wins = parseInt(1) + parseInt(league[team2].wins));
-												return parseInt(league[team2].wins);}
+												return parseInt(league[team2].wins);},
+											percentage: function(){
+												return parseInt(league[team2].wins)/parseInt(league[team2].wins) + parseInt(league[team2].losses);
+											}
 										  },
 									success: function(data) {
 									
@@ -125,7 +140,15 @@ $(document).ready(function(){
 									dataType: 'JSON',
 									data: {losses: function()
 												{parseInt(league[team1].losses = parseInt(1) + parseInt(league[team1].losses));
-												return parseInt(league[team1].losses);}
+												return parseInt(league[team1].losses);},
+											percentage: function(){
+												if (parseInt(league[team1].wins) === 0){
+													return 0;
+													}
+												else{
+													return parseInt(league[team2].wins)/parseInt(league[team2].wins) + parseInt(league[team2].losses);
+													}
+											}
 										  },
 									success: function(data) {
 					
@@ -168,9 +191,9 @@ $(document).ready(function(){
 // ********************************************* Function to Clear Data from Add Team Form ***************************
 
 	function clearForm(){
-				$(".required").each(function(){
-				$(this).val("");
-				});		
+					$(".required").each(function(){
+						$(this).val("");
+					});		
 				};//end clearForm
 
 // ********************************************* Function to Write Teams to Page *************************************
@@ -227,8 +250,8 @@ loadTeams();
 					phone: $("#phone").val(),
 					sponsor: $("#sponsor").val(),
 					zipcode: $("#zipcode").val(),
-					wins: parseInt(0),
-					losses: parseInt(0),
+					wins: 0,
+					losses: 0,
 					percentage: 0,
 					},	//end data
 				success: function(data) {
