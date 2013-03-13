@@ -1,3 +1,5 @@
+
+
 This code captures information for six teams, stores this information on the server, and writes the data to the page. 
 It includes delete buttons for each team, though the delete method is not currently working. Click the Update Schedule 
 button, and the games schedule appears with text boxes for entering scores. After entering the scores, click the update 
@@ -7,13 +9,15 @@ team instead! Future goals for this project include: getting the wins and losses
 updating the scores of individual games by clicking the score button, rather than updating them all at the same time, 
 and adding a sorting feature to the team stats.
 
-Laura and I worked in different files for this project, because we felt that writing our own code would better 
+Steve and I worked in different files for this project, because we felt that writing our own code would better 
 faciliate the learning process for both of us. We constantly shared ideas and helped each other over each hurdle. 
 Ultimately code will be merged as we get closer to full functionality.
 
-My code as of 3/6 is under 'SteveBranch'.  App can be viewed at https://league3-yki3v.backliftapp.com/
 
-Laura's code may be viewed here: https://nssbaseballtesting-8vkdm.backliftapp.com/
+My app may be viewed here: https://nssbaseballtesting-8vkdm.backliftapp.com/
+
+Steve's code as of 3/6 is under 'SteveBranch'.  App can be viewed at https://league3-yki3v.backliftapp.com/
+
 
 
 
