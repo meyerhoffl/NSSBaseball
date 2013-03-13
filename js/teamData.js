@@ -1,6 +1,7 @@
 // ********************************************* Function for Writing Schedule to Page ***************************************
 
 $(document).ready(function(){
+
 	var schedule=function(league){
 		var teamSchedule=[ 
 			[ [1, 6], [2, 5], [3, 4] ],
@@ -72,7 +73,7 @@ $(document).ready(function(){
 
 									},//end success
 		
-									error: function(data) {
+									error: function(league) {
 										alert("fail post");
 									}//end error
 								})//end post
@@ -93,13 +94,13 @@ $(document).ready(function(){
 													}
 											}
 										  },
-									success: function(data) {
+									success: function(league) {
 									
 
 					
 									},//end success
 		
-									error: function(data) {
+									error: function(league) {
 										alert("fail post");
 									}//end error
 								})//end post
@@ -125,11 +126,11 @@ $(document).ready(function(){
 												return parseInt(league[team2].wins)/parseInt(league[team2].wins) + parseInt(league[team2].losses);
 											}
 										  },
-									success: function(data) {
+									success: function(league) {
 									
 									},//end success
 		
-									error: function(data) {
+									error: function(league) {
 										alert("fail post");
 									}//end error
 								})//end post
@@ -150,12 +151,12 @@ $(document).ready(function(){
 													}
 											}
 										  },
-									success: function(data) {
+									success: function(league) {
 					
 					
 									},//end success
 		
-									error: function(data) {
+									error: function(league) {
 										alert("fail post");
 									}//end error
 								})//end post
@@ -186,7 +187,10 @@ $(document).ready(function(){
 //       };//end for
 //   });//end click
 
-
+//********************************************************* Sorting Function *****************************************
+function sort(){
+ $("#standings").tablesorter(); 
+};
 
 // ********************************************* Function to Clear Data from Add Team Form ***************************
 
@@ -221,7 +225,8 @@ $(document).ready(function(){
 				alert("fail get")
 				}//end error
 		});//end get
-
+ 	
+	
 	};//end loadTeams
 
 		
@@ -302,13 +307,13 @@ loadTeams();
 			url: 'backliftapp/nssbaseballtesting',
 			type: 'get',
 			// dataType: 'text',
-			success: function(data) {
+			success: function(league) {
 				
-				schedule(data);
+				schedule(league);
 	
 			},//end success
 	
-			error: function(data) {
+			error: function(league) {
 				alert("fail get")
 			}//end error
 		});//end get
@@ -323,17 +328,32 @@ loadTeams();
 			type: 'get',
 			// dataType: 'json',
 			// data: teamInfo,
-			success: function(data) {
+			success: function(league) {
 	
-			tallyScores(data);
+			tallyScores(league);
 			loadTeams();
+			
 			
 	
 			},//end success
 	
-			error: function(data) {
+			error: function(league) {
 				alert("fail post");
 			}//end error
 		})//end post
 	});//end update results
+
+		// ************************************************** Sort Results  ****************************************
+
+
+		$("#standings").hover(function(){
+			sort();
+			$("[rel=tooltip]").tooltip();
+			
+		});
+
+	
+
+
+
 }); //end ready

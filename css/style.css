@@ -54,3 +54,20 @@ tr th {
         #cboxLoadingOverlay{background:#fff url(images/loading.gif) no-repeat 5px 5px;}
         #cboxClose{position:absolute; bottom:0; right:0; display:block; color:#444;}
 
+.number {
+    width: 30px;
+}
+
+/*table.tablesorter thead .headerSortUp {
+    background-image: url(../img/asc.gif);
+}
+table.tablesorter thead .headerSortDown {
+    background-image: url(../img/desc.gif);
+}
+
+table.tablesorter thead .header {
+    background-image: url(../img/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}*/
