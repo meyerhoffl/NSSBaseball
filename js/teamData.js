@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 	var tallyScores=function(league){
 
-		alert("tallying score");
+		
 
 		var teamSchedule=[ 
 			[ [1, 6], [2, 5], [3, 4] ],
@@ -53,7 +53,7 @@ $(document).ready(function(){
 						// alert($('#input-' + data[team1].id).val());
 	
 							
-							alert("team1 is higher");
+							
 							console.log($('#' + i + league[team1].id).val() + " is greater than " + $('#' + i + league[team2].id).val())
 								$.ajax({
 									url: '/backliftapp/nssbaseballtesting/' + league[team1].id,
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
 	
 					else {
-						alert("team2 is higher");
+						
 						console.log($('#' + i +  league[team1].id).val() + " is less than " + $('#' + i +  league[team2].id).val());
 							
 							// data[team2].wins += 1;
