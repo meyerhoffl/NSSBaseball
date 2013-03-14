@@ -1,22 +1,19 @@
+This code is for an assignment at the Nashville Software School. 
+It fulfills all of the project requirements listed below:
+
+  Allows user to enter team information into a form for six teams.
+  Captures this information and prints it to the page.
+  Writes a pre-defined schedule to the page.
+  Populates schedule with team names.
+  User may enter scores for each game.
+  Scores are captured and printed to the page.
+  The team information table is sortable.
 
 
-This code captures information for six teams, stores this information on the server, and writes the data to the page. 
-It includes delete buttons for each team, though the delete method is not currently working. Click the Update Schedule 
-button, and the games schedule appears with text boxes for entering scores. After entering the scores, click the update 
-results button, and a function evaluates which team has won and lost. We have attempted to write this information 
-back to the server to be added to the original team information, however, at present, it is writing a new, undefined 
-team instead! Future goals for this project include: getting the wins and losses to write back to the server properly, 
-updating the scores of individual games by clicking the score button, rather than updating them all at the same time, 
-and adding a sorting feature to the team stats.
 
-Steve and I worked in different files for this project, because we felt that writing our own code would better 
-faciliate the learning process for both of us. We constantly shared ideas and helped each other over each hurdle. 
-Ultimately code will be merged as we get closer to full functionality.
+  
 
-
-My app may be viewed here: https://nssbaseballtesting-8vkdm.backliftapp.com/
-
-Steve's code as of 3/6 is under 'SteveBranch'.  App can be viewed at https://league3-yki3v.backliftapp.com/
+  
 
 
 
