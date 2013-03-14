@@ -1,6 +1,7 @@
 // ********************************************* Function for Writing Schedule to Page ***************************************
 
 $(document).ready(function(){
+	$(".schedule, #addScores, #Play").hide();
 
 	var schedule=function(league){
 		var teamSchedule=[ 
@@ -12,12 +13,12 @@ $(document).ready(function(){
 		];
 
 		$(".schedule").each(function(i, elem){
-			$(elem).find(".week");
+			$(elem).find(".week").prepend("<h3>Week " + (i +1) + "</h3>");
 				$(elem).find(".span4").each(function(j, elem2){
 
-					var game = teamSchedule[i][j];
-					var team1 = game[0] - 1;
-					var team2 = game[1] - 1;
+						var game = teamSchedule[i][j];
+						var team1 = game[0] - 1;
+						var team2 = game[1] - 1;
 		
 				$(elem2).append('<label>' + league[team1].team_name + '</label>' + '<input class="number" id="'+ i + league[team1].id +'" />');
 				$(elem2).append('<label>' + league[team2].team_name + '</label>' + '<input class="number" id="'+ i + league[team2].id +'" /><br/>');
@@ -25,7 +26,6 @@ $(document).ready(function(){
 			});//end elem next
 		});//end schedule.each
 	};//end schedule
-
 // ************************************* Function for Evaluating Winner and Loser, Writing to Server **********************
 
 	var tallyScores=function(league){
@@ -166,28 +166,8 @@ $(document).ready(function(){
 	};//end tallyScores
 
 
-//********************************************** Function to play again with same teams ******************************
-
-
-// $("#playAgain").click(function() {
-
-//       for (var i = 0; i < league.length; i ++) {
-//         $.ajax({
-//           url: '/backliftapp/nssbaseballtesting',
-//           type: "PUT",
-//           dataType: "JSON",
-//           data:{ data[i].wins: 0, data[i].losses:0, data[i].percentage: 0
-//           },
-//             success: function (data) {
-           
-//             loadTeams();
-           
-//           }//end success
-//         }); // end PUT
-//       };//end for
-//   });//end click
-
 //********************************************************* Sorting Function *****************************************
+
 function sort(){
  $("#standings").tablesorter(); 
 };
@@ -203,11 +183,17 @@ function sort(){
 // ********************************************* Function to Write Teams to Page *************************************
 
 	function loadTeams(){
+		
 		$.ajax({
 			url: 'backliftapp/nssbaseballtesting',
 			type: 'get',
 			// dataType: 'text',
 			success: function(league) {
+				
+				
+				limitTeams(league);
+
+
 				$('tbody').html(" ");
 			
 					for (i=0; i < league.length; i++){
@@ -218,30 +204,45 @@ function sort(){
 						$('.infopopover').popover({ html : true, trigger: 'hover', content: popovercontent})//end popover
 					
 					}// end for statement
-		
+	
 			},//end success
+
 		
 			error: function(league) {
 				alert("fail get")
 				}//end error
 		});//end get
- 	
+		
 	
+
 	};//end loadTeams
 
-		
+
+// ********************************************* Limit Teams ********************************************
+
+
+function limitTeams(x){
+	if (x.length>=6){
+		$("#addteambutton").hide();
+		$("#standings").after("<h4 id='full'>League is Full</h4>");
+		$("#Play").show();
+		$("#addScores").hide();
+
+
+	}
+	else{
+		$("#full").hide();
+		$("#addteambutton").show();
+		$("#Play").hide();
+		return false;
+	}
+}
+
 // ********************************************* Adding Teams to Server ********************************************
 loadTeams();
 
 	$("#addteambutton").click(function(){
-		// if (league.length >= 6){
-
-		// 	("league is full");
-		// }
-
-		// else
-
-		// {
+		
 		$(".submit").one('click', function(){
 			
 			$.ajax({
@@ -260,9 +261,9 @@ loadTeams();
 					percentage: 0,
 					},	//end data
 				success: function(data) {
-					
 						
 						loadTeams();
+
 						
 				
 				},//end success
@@ -271,13 +272,16 @@ loadTeams();
 					alert("fail post");
 				}//end error
 			
+			
 			})//end post
 			
 				clearForm();
 				$.colorbox.close()
+
+				
 		
 			});//end submit click
-		// }//end else	
+		
 	}); // addteambutton END CLICK
 
 // ********************************************* Deleting a Team ******************************************************
@@ -301,15 +305,19 @@ loadTeams();
 
 	// ********************************************* Writing Schedule to Page ****************************************
 
-	$("#updateSchedule").click(function(){
+	$("#Play").click(function(){
 	
 		$.ajax({
 			url: 'backliftapp/nssbaseballtesting',
 			type: 'get',
 			// dataType: 'text',
 			success: function(league) {
-				
+				$(".schedule").show();
 				schedule(league);
+				$("#Play").hide();
+				$("#addScores").show();
+				$("#full").hide();
+
 	
 			},//end success
 	
@@ -317,11 +325,12 @@ loadTeams();
 				alert("fail get")
 			}//end error
 		});//end get
+
 	});//end update schedule click
 
 	// ************************************* Evaluating Winner and Loser, Writing to Server **************************
 
-	$("#updateresults").click(function(){
+	$("#addScores").click(function(){
 	
 		$.ajax({
 			url: '/backliftapp/nssbaseballtesting',
@@ -332,6 +341,9 @@ loadTeams();
 	
 			tallyScores(league);
 			loadTeams();
+			$("#addScores").hide();
+			$(".schedule").hide();
+			
 			
 			
 	
@@ -342,6 +354,8 @@ loadTeams();
 			}//end error
 		})//end post
 	});//end update results
+
+
 
 		// ************************************************** Sort Results  ****************************************
 
