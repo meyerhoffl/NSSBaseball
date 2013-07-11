@@ -36,8 +36,7 @@ $(document).ready(function(){
 			[ [1, 2], [3, 6], [4, 5] ],
 			];
 
-		$(".schedule").each(function(i, elem){
-			$(elem).find(".week");
+		$('.week').each(function(i, elem){
 				$(elem).find(".span4").each(function(j, elem2){
 					var game = teamSchedule[i][j];
 					var team1 = game[0] - 1;
@@ -60,7 +59,7 @@ $(document).ready(function(){
 													}
 										  	},
 									success: function(league) {
-									console.log(league[team1]);
+									console.log(league[team1].wins);
 
 
 									},//end success
@@ -226,6 +225,26 @@ function limitTeams(x){
 	}
 }
 
+function resetScores(league){
+	for(x=0; x < league.length; x++){
+		$.ajax({
+			url: '/backliftapp/teamdata/' + league[x].id,
+			type: 'PUT',
+			dataType: 'JSON',
+			data: {wins: 0,
+				losses: 0,
+				percentage: 0,
+			},
+			success: function(league) {
+			},
+			error: function(league) {
+				alert("fail post");
+			}//end error
+			})
+		}
+	}
+
+
 // ********************************************* Adding Teams to Server ********************************************
 loadTeams();
 
@@ -264,7 +283,6 @@ loadTeams();
 			})//end post
 
 				clearForm();
-				$.colorbox.close()
 
 
 
@@ -343,6 +361,19 @@ loadTeams();
 		})//end post
 	});//end update results
 
+	$('#resetScores').click(function(){
+		$.ajax({
+			url: '/backliftapp/teamdata',
+			type: 'get',
+			success: function(league) {
+				resetScores(league);
+				loadTeams();
+			},
+			error: function(league) {
+			alert("fail post");
+			}
+		})
+	});
 
 
 		// ************************************************** Sort Results  ****************************************
